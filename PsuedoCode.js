@@ -1,16 +1,15 @@
-// I need a series of questions stored in an array
-// accumulate correct answers 
+// I need a series of questions stored in an object
+// The answers and the questions will be accessable in that object.
+
+// a variable to accumulate correct answers 
 // a variable to hold the time display
 
 
 
 
-// Store questions as an object.  The answers and the questions will 
-// be accessable in that object.
-
 
 //A start button.. on click timer starts
-  //creat a variable with the start time
+  //create a variable with the start time
   //Timer that starts when the user starts the quiz
   //Use set interval to decrease timer every second (1000 ms)
   //After clicking start insert the first Question (A ul with li )
