@@ -1,32 +1,34 @@
-// a variable to hold the time display
+// a variable for start time
 var secondsLeft = 75;
 
-//variable for my start button div
-var startButton = document.getElementById("start-button");
-
-var questionBlock = document.getElementById("question-block");
+//the element that displays the time
 var timeEl = document.getElementById("timeEl")
 
+//start button div
+var startButton = document.getElementById("start-button");
+
+// variable for the questions title
+var questionBlock = document.getElementById("question-block");
+
+// divs for the choices
 var choices0 = document.getElementById("choices0")
 var choices1 = document.getElementById("choices1")
 var choices2 = document.getElementById("choices2")
 var choices3 = document.getElementById("choices3")
 
+// array of divs
 var choiceArr = [choices0, choices1, choices2, choices3];
-
-// adding a click event to the choices div
-
 
 // a variable to accumulate correct answers 
 var correctAnswers = 0;
 
-
+// keeping track of which question we're on
 var questionCount = 0;
+
+//keeping score
 var score = 0;
 
-
-
-// creating my button dynamically so I an hide it after it's clicked.
+// dynamically creating and inserting start button so I can hide it once clicked.
 function pageLoad() {
   var start = document.createElement("button");
   start.innerHTML = "Start!"
@@ -37,7 +39,7 @@ pageLoad();
 
 startButton.addEventListener("click", setTime);
 
-//Timer that starts when the user clicks to start the quiz
+//Timer starts when the user clicks startButton (see above).
 function setTime() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
@@ -52,7 +54,7 @@ function setTime() {
   startButton.remove();
 }
 
-
+//function to load the first question on the page
 function startQuiz() {
   questionBlock.innerHTML = questions[questionCount].title;
   for (var i = 0; i < questions[questionCount].multiChoice.length; i++) {
@@ -68,6 +70,7 @@ function startQuiz() {
   } );
 };
 
+//fuction to load susequent questions on the page (may be unnecessary)
 function nextQuestion() {
   questionBlock.innerHTML = questions[questionCount].title;
   for (var i = 0; i < questions[questionCount].multiChoice.length; i++) {
@@ -79,26 +82,15 @@ function nextQuestion() {
       choiceArr[questionCount].remove();
       questionBlock.innerHTML = "";
       questionCount ++;
+      nextQuestion();
   } );
 }
 
 
+//need conditional statments to ditermine of the button clicked is the correct answer.  If the button clicked matches the answer in the object score++
 
+//else decrement secondsLeft by 10
 
-
-
-
-
-
-//after the user clicks a queston increment the queston count by 1 the re-run start quiz with the next question and answer set.
-
-
-//when the user clicks an answer the question count increments 1 then a function will run to insert the question answer block with an index number that corresponds with the next question.
-
-// var question = questions[0].title;
-// var questionP = document.createElement("p");
-// questionP.textContent = question.text;
-// questionBlock.appendChild(questionP);
-
+//Need variablesto store the user's score with their initials in local storage
 
 
