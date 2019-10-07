@@ -1,26 +1,26 @@
 var questions = [
   {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
+    title: "First Question?",
+    multiChoice: ["Answer 1a", "Answer 1b", "Answer 1c", "Answer 1d"],
+    answer: "Answer 1c"
   },
 
   {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    title: "Second Question?",
+    multiChoice: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
+    answer: "Answer 2c"
   },
 
   {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
+    title: "Third Question?",
+    multiChoice: ["Answer 3a", "Answer 3b", "Answer 3c", "Answer 3d"],
+    answer: "Answer 3c"
   },
 
   {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    title: "Fourth Question?",
+    multiChoice: ["Answer 4a", "Answer 4b", "Answer 4c", "Answer 4d"],
+    answer: "Answer 4c"
   },
 
 ];

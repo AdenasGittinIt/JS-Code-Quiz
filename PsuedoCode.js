@@ -5,9 +5,6 @@
 // a variable to hold the time display
 
 
-
-
-
 //A start button.. on click timer starts
   //create a variable with the start time
   //Timer that starts when the user starts the quiz
