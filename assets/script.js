@@ -61,12 +61,11 @@ function displayQuestions() {
       event.stopPropagation();
       if (el.innerText === questions[questionCount].answer) {
         score++
-       console.log("what??")
+       console.log(score);
       } else {
         score--;
         // console.log("why won't this work?")
-        console.log(el.innerText)
-        console.log(questions[questionCount].answer)
+        console.log(score);
       };
       choiceArr[questionCount].remove();
       questionDiv.innerHTML = "";
