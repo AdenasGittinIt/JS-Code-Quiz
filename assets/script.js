@@ -1,14 +1,22 @@
 // a variable for start time
-let secondsLeft = 75;
+let secondsLeft = 76;
 
 //the element that displays the time
 let timer = document.getElementById("timer");
+
+//button to view high scores
+let viewScores = document.getElementById("view-scores");
 
 //start button div
 var startButton = document.getElementById("start-button");
 
 // variable for the questions title
 var questionDiv = document.getElementById("question-div");
+
+// div to hold the results
+let results = document.getElementById("results");
+
+
 
 // divs for the choices
 var choices0 = document.getElementById("choices0");
@@ -35,16 +43,19 @@ function pageLoad() {
   start.innerHTML = "Start Quiz!";
   startButton.append(start);
   startButton.addEventListener("click", setTime);
+
 }
 
 //Timer starts when the user clicks startButton (see above).
 function setTime() {
   displayQuestions();
-  var timerInterval = setInterval(function() {
+  let timerInterval = setInterval(function() {
     secondsLeft--;
-    timer.textContent = "Time left: " + secondsLeft;
-    if (secondsLeft === 0 || questionCount === 4) {
+    timer.textContent = "";
+    timer.textContent = "Time: " + secondsLeft;
+    if (secondsLeft <= 0 || questionCount === questions.length) {
       clearInterval(timerInterval);
+      displayScore();
     } 
   }, 1000);
 }
@@ -60,17 +71,18 @@ function displayQuestions() {
     el.addEventListener("click", function(event) {
       event.stopPropagation();
       if (el.innerText === questions[questionCount].answer) {
-        score++;
+        score += secondsLeft;
         console.log(score);
       } else {
-        score--;
-        secondsLeft = secondsLeft - 30;
+        score -= 10;
+        secondsLeft = secondsLeft - 15;
         console.log(score);
       }
       choiceArr[questionCount].remove();
       questionDiv.innerHTML = "";
       questionCount++;
-      if (questionCount === 4) {
+      if (questionCount === questions.length) {
+
         return;
       } else {
         displayQuestions();
@@ -78,6 +90,21 @@ function displayQuestions() {
     });
     choiceArr[questionCount].append(el);
   }
+}
+
+function displayScore() {
+  timer.remove();
+  
+  const initialsInput = document.createElement("input");
+  const submitBtn = document.createElement("input");
+
+  results.innerHTML = `You scored ${score} points! Enter you initials: `;
+  initialsInput.setAttribute("type","text");
+  submitBtn.setAttribute("type", "button");
+  submitBtn.setAttribute("value", "Post Score!");
+  
+  results.append(initialsInput);  
+  results.append(submitBtn);
 }
 
 pageLoad();
