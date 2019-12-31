@@ -39,19 +39,19 @@ function pageLoad() {
 
 //Timer starts when the user clicks startButton (see above).
 function setTime() {
+  displayQuestions();
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timer.textContent = "Time left: " + secondsLeft;
-    if (secondsLeft === 0) {
+    if (secondsLeft === 0 || questionCount === 4) {
       clearInterval(timerInterval);
-    }
+    } 
   }, 1000);
-  displayQuestions();
-  startButton.remove();
 }
 
-//function to load the first question on the page
+//function to load the questions on the page
 function displayQuestions() {
+  startButton.remove();
   questionDiv.innerHTML = questions[questionCount].title;
   for (let i = 0; i < questions[questionCount].multiChoice.length; i++) {
     let el = document.createElement("button");
@@ -60,39 +60,26 @@ function displayQuestions() {
     el.addEventListener("click", function(event) {
       event.stopPropagation();
       if (el.innerText === questions[questionCount].answer) {
-        score++
-       console.log(score);
+        score++;
+        console.log(score);
       } else {
         score--;
-        // console.log("why won't this work?")
+        secondsLeft = secondsLeft - 30;
         console.log(score);
-      };
+      }
       choiceArr[questionCount].remove();
       questionDiv.innerHTML = "";
       questionCount++;
-      displayQuestions();
-    })
+      if (questionCount === 4) {
+        return;
+      } else {
+        displayQuestions();
+      }
+    });
     choiceArr[questionCount].append(el);
   }
 }
 
-
-
 pageLoad();
-
-
-
-
-// function checkQuestion() {
-//   var choiceButton = document.getElementsByClassName("choiceButton");
-//   if (choiceButton.textContent === questions.answer) {
-//     score++;
-//   }
-// }
-// if the inner HTML of the button matches the string in the answer increment the score by 1
-
-//need conditional statments to ditermine of the button clicked is the correct answer.  If the button clicked matches the answer in the object score++
-
-//else decrement secondsLeft by 10
 
 //Need variablesto store the user's score with their initials in local storage
