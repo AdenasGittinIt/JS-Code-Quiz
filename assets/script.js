@@ -28,6 +28,7 @@ var choiceArr = [choices0, choices1, choices2, choices3];
 // an array to store high scores
 let emptyArray = [];
 
+// the array from local storage
 let storedArray = JSON.parse(window.localStorage.getItem("highScores"));
 
 
@@ -105,7 +106,7 @@ function displayUserScore() {
   submitBtn.setAttribute("value", "Post Score!");
   submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
-    let scoresArray = correctArray(storedArray,emptyArray)
+    let scoresArray = defineScoresArray(storedArray,emptyArray)
 
     let initials = initialsInput.value;
     let userAndScore = {
@@ -114,7 +115,7 @@ function displayUserScore() {
     } 
 
     scoresArray.push(userAndScore);
-    handleScores(scoresArray);
+    saveScores(scoresArray);
 
   })
   results.append(initialsInput);  
@@ -122,16 +123,15 @@ function displayUserScore() {
 
 }
 
-
-const handleScores = (array) => {
+const saveScores = (array) => {
   window.localStorage.setItem("highScores", JSON.stringify(array));
 }
 
-let correctArray = function(arr1,arr2) {
-  if(arr1 === null){
-    return arr2
-  } else {
+const defineScoresArray = (arr1,arr2) => {
+  if(arr1 !== null){
     return arr1
+  } else {
+    return arr2
   }
 }
 
