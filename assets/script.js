@@ -7,11 +7,15 @@ let timer = document.getElementById("timer");
 //div for high scores
 let scoresDiv = document.getElementById("scores-div");
 
+let buttonsDiv = document.getElementById("buttons")
+
 //button for high scores
 let viewScoresBtn = document.getElementById("view-scores")
 
 //start button div
-var startButton = document.getElementById("start-button");
+let startButton = document.getElementById("start-button");
+startButton.addEventListener("click", setTime);
+
 
 // variable for the questions title
 var questionDiv = document.getElementById("question-div");
@@ -34,22 +38,13 @@ let emptyArray = [];
 // the array from local storage
 let storedArray = JSON.parse(window.localStorage.getItem("highScores"));
 
-
-
 // keeping track of which question we're on
 var questionCount = 0;
 
 //keeping score
 let score = 0
 
-// dynamically creating and inserting start button so I can hide it once clicked.
-function pageLoad() {
-  //Need to add a class to the button to give it meterialize style
-  const start = document.createElement("button");
-  start.innerHTML = "Start Quiz!";
-  startButton.append(start);
-  startButton.addEventListener("click", setTime);
-}
+
 
 //Timer starts when the user clicks startButton (see above).
 function setTime() {
@@ -99,6 +94,7 @@ function displayQuestions() {
 
 function captureUserScore() {
   timer.remove();
+
   
   let initialsInput = document.createElement("input");
   let postScoreBtn = document.createElement("input");
@@ -122,6 +118,7 @@ function captureUserScore() {
     displayAllScores();
     clearScoresBtn();
     goBackBtn();
+    viewScoresBtn.remove();
   })
   results.append(initialsInput);  
   results.append(postScoreBtn);
@@ -176,7 +173,7 @@ function clearScoresBtn() {
   clearBtn.setAttribute("value", "Clear Scores");
   clearBtn.addEventListener("click", function(event){
     event.preventDefault();
-    // removeEls(scoresDiv);
+    removeEls(scoresDiv);
     window.localStorage.removeItem("highScores");
   })
   scoresDiv.append(clearBtn)
@@ -190,9 +187,8 @@ function goBackBtn() {
     event.preventDefault();
     window.location.reload();
   })
-  scoresDiv.append(backBtn)
+  buttonsDiv.append(backBtn)
 }
 
-pageLoad();
 
 viewScores();
