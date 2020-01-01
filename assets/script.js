@@ -5,7 +5,7 @@ let secondsLeft = 76;
 let timer = document.getElementById("timer");
 
 //button to view high scores
-let viewScores = document.getElementById("view-scores");
+let highScores = document.getElementById("high-scores");
 
 //start button div
 var startButton = document.getElementById("start-button");
@@ -16,8 +16,6 @@ var questionDiv = document.getElementById("question-div");
 // div to hold the results
 let results = document.getElementById("results");
 
-
-
 // divs for the choices
 var choices0 = document.getElementById("choices0");
 var choices1 = document.getElementById("choices1");
@@ -27,8 +25,8 @@ var choices3 = document.getElementById("choices3");
 // array of divs where the multiple choice questions will display
 var choiceArr = [choices0, choices1, choices2, choices3];
 
-// a variable to accumulate correct answers
-
+// an array to store high scores
+let highScoresArr = [];
 
 // keeping track of which question we're on
 var questionCount = 0;
@@ -43,7 +41,6 @@ function pageLoad() {
   start.innerHTML = "Start Quiz!";
   startButton.append(start);
   startButton.addEventListener("click", setTime);
-
 }
 
 //Timer starts when the user clicks startButton (see above).
@@ -55,7 +52,7 @@ function setTime() {
     timer.textContent = "Time: " + secondsLeft;
     if (secondsLeft <= 0 || questionCount === questions.length) {
       clearInterval(timerInterval);
-      displayScore();
+      displayUserScore();
     } 
   }, 1000);
 }
@@ -92,21 +89,58 @@ function displayQuestions() {
   }
 }
 
-function displayScore() {
+function displayUserScore() {
   timer.remove();
   
-  const initialsInput = document.createElement("input");
-  const submitBtn = document.createElement("input");
+  let initialsInput = document.createElement("input");
+  let submitBtn = document.createElement("input");
 
-  results.innerHTML = `You scored ${score} points! Enter you initials: `;
+  results.innerHTML = `You scored ${score} points! Enter initials: `;
   initialsInput.setAttribute("type","text");
   submitBtn.setAttribute("type", "button");
   submitBtn.setAttribute("value", "Post Score!");
+  submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    // let highScoresArr = []
+    // setHighScores(highScoresArr);
+    getHighScores();
   
+    // if the the array is not null 
+    let initials = initialsInput.value;
+    let userAndScore = {
+      initials: initials,
+      score: score,
+    } 
+    highScoresArr.push(userAndScore);
+    setHighScores(highScoresArr);
+    getHighScores();
+  })
   results.append(initialsInput);  
   results.append(submitBtn);
+
 }
+
+const getHighScores = () => {
+  let highScoresArr = JSON.parse(window.localStorage.getItem("highScores"));
+  console.log(highScoresArr);
+  return highScoresArr;
+}
+
+const setHighScores = (array) => {
+  window.localStorage.setItem("highScores", JSON.stringify(array));
+}
+
+
+
+
+
+// function displayHighScore() {
+//   displayArr = JSON.parse(window.localStorage.getItem(highScores));
+//   console.log(displayArr);
+// }
+
 
 pageLoad();
 
-//Need variablesto store the user's score with their initials in local storage
+
+//CHECK SPELLING OF HIGHSCORESARR VS highScoresArr!!!!!!

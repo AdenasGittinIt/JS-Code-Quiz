@@ -21,8 +21,7 @@ var questions = [
     title: "Fourth Question?",
     multiChoice: ["Answer 4a", "Answer 4b", "Answer 4c", "Answer 4d"],
     answer: "Answer 4d"
-  },
-
+  }
 ];
 
 //for loop to loop throught the choices, create a button insert the text then append to the div
