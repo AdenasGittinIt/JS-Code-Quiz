@@ -26,7 +26,11 @@ var choices3 = document.getElementById("choices3");
 var choiceArr = [choices0, choices1, choices2, choices3];
 
 // an array to store high scores
-let highScoresArr = [];
+let emptyArray = [];
+
+let storedArray = JSON.parse(window.localStorage.getItem("highScores"));
+
+
 
 // keeping track of which question we're on
 var questionCount = 0;
@@ -101,46 +105,34 @@ function displayUserScore() {
   submitBtn.setAttribute("value", "Post Score!");
   submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
-    // let highScoresArr = []
-    // setHighScores(highScoresArr);
-    getHighScores();
-  
-    // if the the array is not null 
+    let scoresArray = correctArray(storedArray,emptyArray)
+
     let initials = initialsInput.value;
     let userAndScore = {
       initials: initials,
       score: score,
     } 
-    highScoresArr.push(userAndScore);
-    setHighScores(highScoresArr);
-    getHighScores();
+
+    scoresArray.push(userAndScore);
+    handleScores(scoresArray);
+
   })
   results.append(initialsInput);  
   results.append(submitBtn);
 
 }
 
-const getHighScores = () => {
-  let highScoresArr = JSON.parse(window.localStorage.getItem("highScores"));
-  console.log(highScoresArr);
-  return highScoresArr;
-}
 
-const setHighScores = (array) => {
+const handleScores = (array) => {
   window.localStorage.setItem("highScores", JSON.stringify(array));
 }
 
-
-
-
-
-// function displayHighScore() {
-//   displayArr = JSON.parse(window.localStorage.getItem(highScores));
-//   console.log(displayArr);
-// }
-
+let correctArray = function(arr1,arr2) {
+  if(arr1 === null){
+    return arr2
+  } else {
+    return arr1
+  }
+}
 
 pageLoad();
-
-
-//CHECK SPELLING OF HIGHSCORESARR VS highScoresArr!!!!!!
