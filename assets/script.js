@@ -23,19 +23,14 @@ var questionDiv = document.getElementById("question-div");
 // div to hold the results
 let results = document.getElementById("results");
 
-// divs for the choices
-var choices0 = document.getElementById("choices0");
-var choices1 = document.getElementById("choices1");
-var choices2 = document.getElementById("choices2");
-var choices3 = document.getElementById("choices3");
+// div for the choices
+var choices = document.getElementById("choices");
 
-// array of divs where the multiple choice questions will display
-var choiceArr = [choices0, choices1, choices2, choices3];
 
 // an array to store high scores
 let emptyArray = [];
 
-// the array from local storage
+// the array of high scores from local storage
 let storedArray = JSON.parse(window.localStorage.getItem("highScores"));
 
 // keeping track of which question we're on
@@ -43,8 +38,6 @@ var questionCount = 0;
 
 //keeping score
 let score = 0
-
-
 
 //Timer starts when the user clicks startButton (see above).
 function setTime() {
@@ -63,55 +56,60 @@ function setTime() {
 //function to load the questions on the page
 function displayQuestions() {
   removeEls(startButton);
-  questionDiv.innerHTML = questions[questionCount].title;
-  for (let i = 0; i < questions[questionCount].multiChoice.length; i++) {
-    let el = document.createElement("button");
-    el.innerText = questions[questionCount].multiChoice[i];
-    el.setAttribute("data-id", i);
-    el.addEventListener("click", function(event) {
-      event.stopPropagation();
-      if (el.innerText === questions[questionCount].answer) {
-        score += secondsLeft;
-        console.log(score);
-      } else {
-        score -= 10;
-        secondsLeft = secondsLeft - 15;
-        console.log(score);
-      }
-      choiceArr[questionCount].remove();
-      questionDiv.innerHTML = "";
-      questionCount++;
-      if (questionCount === questions.length) {
 
-        return;
-      } else {
-        displayQuestions();
-      }
-    });
-    choiceArr[questionCount].append(el);
+  if (questionCount < questions.length) {
+    questionDiv.innerHTML = questions[questionCount].title;
+    choices.textContent = "";
+
+    for (let i = 0; i < questions[questionCount].multiChoice.length; i++) {
+      let el = document.createElement("button");
+      el.innerText = questions[questionCount].multiChoice[i];
+      el.setAttribute("data-id", i);
+      el.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        if (el.innerText === questions[questionCount].answer) {
+          score += secondsLeft;
+        } else {
+          score -= 10;
+          secondsLeft = secondsLeft - 15;
+        }
+        
+        questionDiv.innerHTML = "";
+
+        if (questionCount === questions.length) {
+          return;
+        } else {
+          questionCount++;
+          displayQuestions();
+        }
+      });
+      choices.append(el);
+    }
   }
 }
 
+
 function captureUserScore() {
   timer.remove();
+  choices.textContent = "";
 
-  
   let initialsInput = document.createElement("input");
   let postScoreBtn = document.createElement("input");
 
   results.innerHTML = `You scored ${score} points! Enter initials: `;
-  initialsInput.setAttribute("type","text");
+  initialsInput.setAttribute("type", "text");
   postScoreBtn.setAttribute("type", "button");
   postScoreBtn.setAttribute("value", "Post My Score!");
-  postScoreBtn.addEventListener("click", function(event) {
+  postScoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    let scoresArray = defineScoresArray(storedArray,emptyArray)
+    let scoresArray = defineScoresArray(storedArray, emptyArray);
 
     let initials = initialsInput.value;
     let userAndScore = {
       initials: initials,
       score: score,
-    } 
+    };
 
     scoresArray.push(userAndScore);
     saveScores(scoresArray);
@@ -119,10 +117,9 @@ function captureUserScore() {
     clearScoresBtn();
     goBackBtn();
     viewScoresBtn.remove();
-  })
-  results.append(initialsInput);  
+  });
+  results.append(initialsInput);
   results.append(postScoreBtn);
-
 }
 
 const saveScores = (array) => {
@@ -152,8 +149,6 @@ function displayAllScores() {
     resultsP.innerText = `${initials}: ${storedScore}`;
     scoresDiv.append(resultsP);
   });
-
-  // iterate through array and create divs or p elements for each object that displays initials and score
 }
 
 function viewScores() {
