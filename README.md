@@ -1,5 +1,5 @@
 # JS-Code-Quiz
-Development of this app was meant to learn how to manipulate DOM elements using JavaScript and as an introduction to the use of local storage. 
+I developed this app to learn how to manipulate DOM elements using JavaScript and as an introduction to the use of local storage. 
 
 Use of the site can be summed up with the following user story:
 
