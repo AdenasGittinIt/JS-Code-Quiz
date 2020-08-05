@@ -18,9 +18,9 @@ var questions = [
   },
 
   {
-    title: "Fourth Question?",
-    multiChoice: ["Answer 4a", "Answer 4b", "Answer 4c", "Answer 4d"],
-    answer: "Answer 4d"
+    title: "Which array method inserts an element at the end of the array?",
+    multiChoice: [".pop()", ".push()", ".length", ".join()"],
+    answer: ".push()"
   },
 
   {
