@@ -6,15 +6,15 @@ var questions = [
   },
 
   {
-    title: "Second Question?",
-    multiChoice: ["Answer 2a", "Answer 2b", "Answer 2c", "Answer 2d"],
-    answer: "Answer 2b"
+    title: "Within a loop, the break keyword may be used to do what?",
+    multiChoice: ["break your code", "exit the loop immediately", "repeat the loop", "indicate a stopping condition"],
+    answer: "exit the loop immediately"
   },
 
   {
-    title: "Third Question?",
-    multiChoice: ["Answer 3a", "Answer 3b", "Answer 3c", "Answer 3d"],
-    answer: "Answer 3c"
+    title: "Properties in a JavaScript oject are often refferred to as what?",
+    multiChoice: ["dot walking", "key-value pairs", "nested properties", "undefined"],
+    answer: "key-value pairs"
   },
 
   {
