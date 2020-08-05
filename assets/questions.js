@@ -6,8 +6,8 @@ var questions = [
   },
 
   {
-    title: "Within a loop, the break keyword may be used to do what?",
-    multiChoice: ["break your code", "exit the loop immediately", "repeat the loop", "indicate a stopping condition"],
+    title: "Within a loop, the 'break' keyword may be used to do what?",
+    multiChoice: ["break your competitors code", "exit the loop immediately", "repeat the loop", "indicate a stopping condition"],
     answer: "exit the loop immediately"
   },
 
@@ -24,8 +24,8 @@ var questions = [
   },
 
   {
-    title: "Fifth Question?",
-    multiChoice: ["Answer 5a", "Answer 5b", "Answer 5c", "Answer 5d","Answer 5e"],
-    answer: "Answer 5d"
+    title: "What is a callback function?",
+    multiChoice: ["a function that accepts an array as an argument", "I function that performs an HTTP request", "a data type similar to a string or a boolean", "a function that is passed into another function as an argument"],
+    answer: "a function that is passed into another function as an argument"
   }
 ];
