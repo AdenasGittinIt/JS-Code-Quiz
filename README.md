@@ -1,5 +1,5 @@
 # JS-Code-Quiz
-I developed this app to learn how to manipulate DOM elements using JavaScript and as an introduction to the use of local storage. 
+I developed this app to learn how to manipulate DOM elements using JavaScript and as an introduction to the use of the browser's local storage. 
 
 Use of the site can be summed up with the following user story:
 
@@ -16,7 +16,7 @@ When you arrive at the landing page click the "View Highscores" button to check 
 
 The timer starts When you click the "Start Quiz".  Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty and a lower score.
 
-Click [here](https://adenasgittinit.github.io/JS-Code-Quiz/) to get started.
+**Click [here](https://adenasgittinit.github.io/JS-Code-Quiz/) to get started.**
 
 ## Technologies Used
 

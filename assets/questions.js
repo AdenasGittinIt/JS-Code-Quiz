@@ -1,8 +1,8 @@
 var questions = [
   {
-    title: "First Question?",
-    multiChoice: ["Answer 1a", "Answer 1b", "Answer 1c", "Answer 1d"],
-    answer: "Answer 1a"
+    title: "An array’s length can be evaluated with the what property?",
+    multiChoice: [".length", ".log", "the console", ".loop"],
+    answer: ".length"
   },
 
   {
